@@ -36,7 +36,7 @@ async function organizeTabs(organizePrompt) {
     console.log('ORGANIZE TABS HAS BEEN CLICKED!');
     try {
         // Make a POST request to the server with the organize prompt
-        const response = await fetch('http://localhost:3000/organizeTabs', {
+        const response = await fetch('http://34.150.217.200:3000/organizeTabs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ organizePrompt })
