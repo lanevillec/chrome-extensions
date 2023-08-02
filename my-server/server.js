@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const {Configuration, OpenAIApi } = require('openai');
-require('dotenv').config()
+const { Configuration, OpenAIApi } = require('openai');
+require('dotenv').config();
 
 const app = express();
-const port = 8080;
+const port = 3000;
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY
 });
@@ -23,7 +23,7 @@ app.post('/organizeTabs', async (req, res) => {
     const chatCompletion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{role: "user", content: organizePrompt}],
-    })
+    });
 
     console.log('RESPONSE: ' + JSON.stringify(chatCompletion.data.choices[0].message));
     res.json(chatCompletion.data.choices[0].message);
@@ -31,10 +31,6 @@ app.post('/organizeTabs', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: error.toString() });
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
 });
 
 // Listen on all available network interfaces
